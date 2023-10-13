@@ -26,7 +26,7 @@ jobs:
           haxelib install flixel
           haxelib run lime setup flixel
           haxelib run lime setup
-          haxelib git https://github.com/Joalor64GH/polymod-joalor64
+          haxelib git polymod-joalor64 https://github.com/Joalor64GH/polymod-joalor64
           haxelib list
         shell: cmd
       - name: Create Version Tag
