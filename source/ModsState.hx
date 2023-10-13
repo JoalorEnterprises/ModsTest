@@ -22,7 +22,7 @@ class ModsState extends FlxState
 
 	override function create()
 	{
-        Paths.clearStoredMemory();
+        	Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
 		persistentUpdate = true;
