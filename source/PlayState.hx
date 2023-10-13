@@ -15,9 +15,8 @@ class PlayState extends FlxState
         	#if FUTURE_POLYMOD
 		ModCore.reload();
 		if (ModCore.trackedMods != []) {
-			for (i in ModCore.trackedMods) {
+			for (i in ModCore.trackedMods)
 				Main.toast.create('Mods installed', 0xFFFFFF00, ' ${i.title}');
-			}
 		}
 		#end
 
@@ -32,7 +31,10 @@ class PlayState extends FlxState
     	{
         	if (FlxG.keys.justPressed.M)
         	{ 
-            		FlxG.switchState(new ModsState());
+			if (ModCore.trackedMods != [])
+            			FlxG.switchState(new ModsState());
+			else
+				Main.toast.create('No Mods Installed!', 0xFFFFFF00, 'Please add mods to be able to access the menu!');
         	}
         
         	super.update(elapsed);
