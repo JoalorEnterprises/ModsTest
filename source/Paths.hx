@@ -112,9 +112,9 @@ class Paths
 		return file('data/$key.xml');
 	}
 
-	static public function sound(key:String, ?cache:Bool = true):Sound
+	static public function sound(key:String)
 	{
-		return returnSound('sounds/$key', cache);
+		return file('sounds/$key.$SOUND_EXT');
 	}
 
 	inline static public function soundRandom(key:String, min:Int, max:Int)
@@ -122,14 +122,14 @@ class Paths
 		return file('sounds/$key${FlxG.random.int(min, max)}.$SOUND_EXT');
 	}
 
-	inline static public function music(key:String, ?cache:Bool = true):Sound
+	inline static public function music(key:String)
 	{
-		return returnSound('music/$key', cache);
+		return file('music/$key.$SOUND_EXT');
 	}
 
-	inline static public function image(key:String, ?cache:Bool = true):FlxGraphic
+	inline static public function image(key:String)
 	{
-		return returnGraphic('images/$key', cache);
+		return file('images/$key.png');
 	}
 
 	inline static public function font(key:String)
@@ -137,17 +137,17 @@ class Paths
 		return file('fonts/$key');
 	}
 
-	inline static public function getSparrowAtlas(key:String, ?cache:Bool = true):FlxAtlasFrames
+	inline static public function getSparrowAtlas(key:String)
 	{
-		return FlxAtlasFrames.fromSparrow(returnGraphic('images/$key', cache), xml('images/$key'));
+		return FlxAtlasFrames.fromSparrow(image(key), file('images/$key.xml'));
 	}
 
-	inline static public function getPackerAtlas(key:String, ?cache:Bool = true):FlxAtlasFrames
+	inline static public function getPackerAtlas(key:String)
 	{
-		return FlxAtlasFrames.fromSpriteSheetPacker(returnGraphic('images/$key', cache), txt('images/$key'));
+		return FlxAtlasFrames.fromSpriteSheetPacker(image(key), file('images/$key.txt'));
 	}
 
-	public static function returnGraphic(key:String, ?cache:Null<Bool> = true):FlxGraphic
+	public static function returnGraphic(key:String, ?cache:Null<Bool> = true):Any
 	{
 		var path:String = 'assets/$key.png';
 		if (Assets.exists(path, IMAGE))
@@ -167,7 +167,7 @@ class Paths
 		return null;
 	}
 
-	public static function returnSound(key:String, ?cache:Null<Bool> = true):Sound
+	public static function returnSound(key:String, ?cache:Null<Bool> = true):Any
 	{
 		if (Assets.exists('assets/$key.$SOUND_EXT', SOUND))
 		{
