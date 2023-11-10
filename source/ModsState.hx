@@ -57,7 +57,7 @@ class ModsState extends FlxState
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
-		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menuBG'));
 		add(bg);
 		bg.screenCenter();
 
