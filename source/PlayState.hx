@@ -2,7 +2,6 @@ package;
 
 import flixel.text.FlxText;
 import flixel.FlxState;
-import core.ModCore;
 import flixel.FlxG;
 
 class PlayState extends FlxState
@@ -11,14 +10,6 @@ class PlayState extends FlxState
     	{
         	Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
-        
-        	#if FUTURE_POLYMOD
-		ModCore.reload();
-		if (ModCore.trackedMods != []) {
-			for (i in ModCore.trackedMods)
-				Main.toast.create('Mods installed', 0xFFFFFF00, ' ${i.title}');
-		}
-		#end
 
         	super.create();
 
@@ -31,10 +22,7 @@ class PlayState extends FlxState
     	{
         	if (FlxG.keys.justPressed.M)
         	{ 
-			if (ModCore.trackedMods != [])
             			FlxG.switchState(new ModsState());
-			else
-				Main.toast.create('No Mods Installed!', 0xFFFFFF00, 'Please add mods to be able to access the menu!');
         	}
         
         	super.update(elapsed);

@@ -25,7 +25,7 @@
 
 	<!-- _____________________________ Custom Defines ____________________________ -->
 
-	<define name="FUTURE_POLYMOD" if="desktop" unless="android | html5"/>
+	<define name="MODS_ALLOWED" if="desktop" unless="android | html5"/>
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -35,17 +35,11 @@
 	<source path="source" />
 	<assets path="assets"/>
 
-	<assets path="mods" if="FUTURE_POLYMOD"/>
+	<assets path="mods" if="MODS_ALLOWED"/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
-
-	<!--In case you want to use the polymod extension-->
-	<haxelib name="polymod-joalor64" if="FUTURE_POLYMOD"/>
-
-	<!-- To prevent errors with polymod -->
-	<haxedef name="hscriptPos" value="true" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
