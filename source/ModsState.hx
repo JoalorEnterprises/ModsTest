@@ -2,7 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.addons.transition.FlxTransitionableState;
+import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
@@ -572,7 +572,7 @@ class ModMetadata
 		this.folder = folder;
 		this.name = folder;
 		this.description = "No description provided.";
-		this.color = ModsMenuState.defaultColor;
+		this.color = ModsState.defaultColor;
 		this.restart = false;
 		
 		//Try loading json

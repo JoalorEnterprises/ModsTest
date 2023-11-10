@@ -4,21 +4,20 @@ package;
 import sys.io.File;
 import sys.FileSystem;
 #end
-import flash.media.Sound;
-import animateatlas.AtlasFrameMaker;
-import flixel.math.FlxPoint;
-import flixel.graphics.frames.FlxFrame.FlxFrameAngle;
-import haxe.xml.Access;
-import haxe.CallStack;
-import haxe.Json;
-import openfl.system.System;
+
 import flixel.FlxG;
-import flixel.graphics.frames.FlxAtlasFrames;
-import openfl.utils.AssetType;
-import openfl.utils.Assets as Assets;
 import flixel.FlxSprite;
 import flixel.graphics.FlxGraphic;
+import flixel.graphics.frames.FlxAtlasFrames;
+
+import flash.media.Sound;
+
+import openfl.system.System;
+import openfl.utils.AssetType;
+import openfl.utils.Assets as Assets;
 import openfl.display.BitmapData;
+
+import haxe.Json;
 
 using StringTools;
 
@@ -37,15 +36,11 @@ class Paths
 	];
 	#end
 
-	/// haya I love you for the base cache dump I took to the max
 	public static function clearUnusedMemory() 
 	{
-		// clear non local assets in the tracked assets list
 		for (key in currentTrackedAssets.keys()) 
 		{
-			// if it is not currently contained within the used local assets
 			if (!localTrackedAssets.contains(key)) {
-				// get rid of it
 				var obj = currentTrackedAssets.get(key);
 				@:privateAccess
 				if (obj != null) 
@@ -57,11 +52,9 @@ class Paths
 				}
 			}
 		}
-		// run the garbage collector for good measure lmfao
 		System.gc();
 	}
 
-	// fuckin around ._.
 	public static function removeBitmap(key)
 	{
 		var obj = currentTrackedAssets.get(key);
@@ -75,11 +68,9 @@ class Paths
 		}
 	}
 
-	// define the locally tracked assets
 	public static var localTrackedAssets:Array<String> = [];
 	public static function clearStoredMemory() 
 	{
-		// clear anything not in the tracked assets list
 		@:privateAccess
 		for (key in FlxG.bitmap._cache.keys())
 		{
@@ -92,7 +83,6 @@ class Paths
 			}
 		}
 
-		// clear all sounds that are cached
 		for (key in currentTrackedSounds.keys()) 
 		{
 			if (!localTrackedAssets.contains(key) && key != null) 
@@ -100,8 +90,7 @@ class Paths
 				Assets.cache.clear(key);
 				currentTrackedSounds.remove(key);
 			}
-		}	
-		// flags everything to be cleared out next unused memory clear
+		}
 		localTrackedAssets = [];
 		Assets.cache.clear("songs");
 	}
@@ -164,7 +153,7 @@ class Paths
 		for (path in Assets.list())
 		{
 			var file = path.split("/").pop();
-			var parent = path.substr(0, path.length - (file.length + 1)); // + 1 to remove the ending slash
+			var parent = path.substr(0, path.length - (file.length + 1));
 
 			if (pathMap.exists(parent))
 				pathMap.get(parent).push(file);
@@ -177,7 +166,7 @@ class Paths
 	
 	inline static public function iterateDirectory(Directory:String, Func)
 	{
-		var dir:String = Directory.endsWith("/") ? Directory.substr(0, -1) : Directory; // remove ending slash
+		var dir:String = Directory.endsWith("/") ? Directory.substr(0, -1) : Directory;
 
 		if (!pathMap.exists(dir))
 			return;
@@ -289,7 +278,6 @@ class Paths
 		return path.toLowerCase().replace(' ', '-');
 	}
 
-	// completely rewritten asset loading? fuck!
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	public static function getGraphic(path:String):FlxGraphic
 	{
@@ -359,7 +347,6 @@ class Paths
 			return currentTrackedSounds.get(file);
 		}
 		#end
-		// I hate this so god damn much
 		var gottenPath:String = getPath('$path/$key.$SOUND_EXT', SOUND);
 		gottenPath = gottenPath.substring(gottenPath.indexOf(':') + 1, gottenPath.length);
 		if (!currentTrackedSounds.exists(gottenPath))
@@ -421,7 +408,7 @@ class Paths
 	static public function getGlobalMods()
 		return globalMods;
 
-	static public function pushGlobalMods() // prob a better way to do this but idc
+	static public function pushGlobalMods()
 	{
 		globalMods = [];
 		var path:String = 'modsList.txt';
