@@ -4,7 +4,6 @@ package;
 import sys.io.File;
 import sys.FileSystem;
 #end
-
 import flash.media.Sound;
 import animateatlas.AtlasFrameMaker;
 import flixel.math.FlxPoint;
@@ -29,7 +28,7 @@ class Paths
 
 	#if MODS_ALLOWED
 	public static var ignoreModFolders:Array<String> = [
-		'_append",
+		'_append',
 		'data',
 		'music',
 		'sounds',
