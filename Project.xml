@@ -37,6 +37,8 @@
 
 	<assets path="mods" if="MODS_ALLOWED"/>
 
+	<assets path="modsList.txt" if="MODS_ALLOWED"/>
+
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
