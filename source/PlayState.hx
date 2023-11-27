@@ -22,7 +22,7 @@ class PlayState extends FlxState
     	{
         	if (FlxG.keys.justPressed.M)
         	{ 
-            			FlxG.switchState(new ModsState());
+            		FlxG.switchState(new ModsState());
         	}
         
         	super.update(elapsed);
